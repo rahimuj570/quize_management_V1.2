@@ -52,14 +52,18 @@ let changePassword = (url_loc) => {
 		<!-- Navbar Right Menu-->
 		<ul class="app-nav">
 
-			<li onclick="showProfileInfo('<%=me.getUser_last_name() %>','<%=me.getUser_email() %>','<%=me.getUser_id() %>')" title="Profile info" class="dropdown"><a
-				class="app-nav__item" href="#" data-toggle="dropdown"
-				aria-label="Open Profile Menu"><i
+			<li
+				onclick="showProfileInfo('<%=me.getUser_last_name()%>','<%=me.getUser_email()%>','<%=me.getUser_id()%>')"
+				title="Profile info" class="dropdown"><a class="app-nav__item"
+				href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i
 					class="fa fa-user-circle-o fa-lg"></i></a>
-			<li onclick="changePassword('<%=request.getContextPath() %>')" title="Change Password" class="dropdown"><a
+			<li onclick="changePassword('<%=request.getContextPath()%>')"
+				title="Change Password" class="dropdown"><a
 				class="app-nav__item" href="#" data-toggle="dropdown"
 				aria-label="Open Profile Menu"><i class="fa fa-key fa-lg"></i></a>
-			<li onclick="window.location='<%=request.getContextPath() %>/LogoutServlet'" title="Logout" class="dropdown"><a class="app-nav__item"
+			<li
+				onclick="window.location='<%=request.getContextPath()%>/LogoutServlet'"
+				title="Logout" class="dropdown"><a class="app-nav__item"
 				href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i
 					class="fa fa-sign-out fa-lg"></i></a></li>
 
@@ -70,27 +74,27 @@ let changePassword = (url_loc) => {
 	<aside class="app-sidebar">
 		<div class="app-sidebar__user">
 			<img width="50" class="app-sidebar__user-avatar"
-				src="https://avatar.iran.liara.run/username?username=<%=me.getUser_first_name()+"+"+me.getUser_last_name() %>"
+				src="https://avatar.iran.liara.run/username?username=<%=me.getUser_first_name() + "+" + me.getUser_last_name()%>"
 				alt="User Image">
 			<div>
-				<p class="app-sidebar__user-name"><%=me.getUser_first_name()+" "+me.getUser_last_name() %></p>
-				<p class="app-sidebar__user-designation"><%
-				
-						if(me.getUser_is_teacher()==1 && me.getUser_is_admin()==1){
-							if(currentPage.contains("admin")){
-								out.print("Admin");
-							}else{
-								out.print("Teacher");
-							}
-						}else if(me.getUser_is_teacher()==1){
-							out.print("Teacher");
-						}else if(me.getUser_is_admin()==1){
+				<p class="app-sidebar__user-name"><%=me.getUser_first_name() + " " + me.getUser_last_name()%></p>
+				<p class="app-sidebar__user-designation">
+					<%
+					if (me.getUser_is_teacher() == 1 && me.getUser_is_admin() == 1) {
+						if (currentPage.contains("admin")) {
 							out.print("Admin");
+						} else {
+							out.print("Teacher");
 						}
-						else{
-							out.print("Student");
-						}
-				%></p>
+					} else if (me.getUser_is_teacher() == 1) {
+						out.print("Teacher");
+					} else if (me.getUser_is_admin() == 1) {
+						out.print("Admin");
+					} else {
+						out.print("Student");
+					}
+					%>
+				</p>
 			</div>
 		</div>
 
@@ -103,43 +107,57 @@ let changePassword = (url_loc) => {
 				href="dashboard.jsp"><i class="app-menu__icon fa fa-dashboard"></i><span
 					class="app-menu__label">Dashboard</span></a></li>
 			<li><a
-				class='app-menu__item <%=currentPage.endsWith("create_question.jsp") ? "active" : ""%>'
-				href="create_question.jsp"><i
-					class="app-menu__icon fa fa-plus-square"></i><span
-					class="app-menu__label">Create Question</span></a></li>
+				class='app-menu__item <%=currentPage.endsWith("pending_users.jsp") ? "active" : ""%>'
+				href="pending_users.jsp"><i
+					class="app-menu__icon fa fa-user-plus"></i><span
+					class="app-menu__label">Pending Users</span></a></li>
 
 
 			<li><a
-				class='app-menu__item <%=currentPage.endsWith("show_question_set.jsp") ? "active" : ""%>'
-				href="show_question_set.jsp"><i
-					class="app-menu__icon fa fa-th-large"></i><span
-					class="app-menu__label">Question Sets</span></a></li>
+				class='app-menu__item <%=currentPage.endsWith("pending_exams.jsp") ? "active" : ""%>'
+				href="pending_exams.jsp"><i
+					class="app-menu__icon fa fa-calendar-check-o"></i><span
+					class="app-menu__label">Pending Exams</span></a></li>
 
 			<li><a
-				class='app-menu__item <%=currentPage.endsWith("show_questions.jsp") ? "active" : ""%>'
-				href="show_questions.jsp"><i class="app-menu__icon fa fa-eye"></i><span
-					class="app-menu__label">Show Questions</span></a></li>
+				class='app-menu__item <%=currentPage.endsWith("show_teachers.jsp") ? "active" : ""%>'
+				href="show_teachers.jsp"><i
+					class="app-menu__icon fa fa-id-badge"></i><span
+					class="app-menu__label">Show Teachers</span></a></li>
 
-			<li><a class="app-menu__item" href="create_exam.jsp"><i
-					class="app-menu__icon fa fa-plus-circle"></i><span
-					class="app-menu__label">Create Exam</span></a></li>
+			<li><a class="app-menu__item" href="show_students.jsp"><i
+					class="app-menu__icon fa fa-graduation-cap"></i><span
+					class="app-menu__label">Show Students</span></a></li>
 
-			<li><a class='app-menu__item <%=currentPage.endsWith("show_exams.jsp") ? "active" : ""%>' href="show_exams.jsp"><i
-					class="app-menu__icon fa fa-eye"></i><span class="app-menu__label">Show
-						Exams</span></a></li>
-			
+			<li><a
+				class='app-menu__item <%=currentPage.endsWith("show_admins.jsp") ? "active" : ""%>'
+				href="show_admins.jsp"><i
+					class="app-menu__icon fa fa-user-secret"></i><span
+					class="app-menu__label">Show Admins</span></a></li>
+
+			<li><a
+				class='app-menu__item <%=currentPage.endsWith("show_permitted_exams.jsp") ? "active" : ""%>'
+				href="show_permitted_exams.jsp"><i
+					class="app-menu__icon fa fa-check-square"></i><span
+					class="app-menu__label">Show Permitted Exam</span></a></li>
+
+
+
 			<%
-				
-						if(me.getUser_is_teacher()==1 && me.getUser_is_admin()==1){
-							
-				%>
-						
-			<hr class="bg-primary h-2" style="height: 2px"/>
-						
-			<li><a class='app-menu__item ' href="<%=request.getContextPath()%>/admin/dashboard.jsp"><i
-					class="app-menu__icon fa fa-refresh"></i><span class="app-menu__label">Switch to Admin</span></a></li>
+			if (me.getUser_is_teacher() == 1 && me.getUser_is_admin() == 1) {
+			%>
 
-<%} %>
+			<hr class="bg-primary h-2" style="height: 2px" />
+
+			<li><a class='app-menu__item '
+				href="<%=request.getContextPath()%>/admin/dashboard.jsp"><i
+					class="app-menu__icon fa fa-refresh"></i><span
+					class="app-menu__label">Switch to Admin</span></a></li>
+
+			<%
+			}
+			%>
+
 			<!-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>

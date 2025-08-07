@@ -600,15 +600,19 @@ public class ExamsDao {
 		PreparedStatement pst = null;
 		try {
 			con.setAutoCommit(false);
+			System.out.println("before");
+			System.out.println(ids.size()+"size");
 			for (Long id : ids) {
+				System.out.println(id);
 				if (isAlredyPermited(id, e.getExam_id()) == false) {
-					String query = "insert into exams_permission value(?,?,?)";
+					String query = "insert into exams_permission values(?,?,?)";
 					pst = con.prepareStatement(query);
 					pst.setInt(1, e.getExam_id());
 					pst.setLong(2, id);
 					pst.setTimestamp(3, new Timestamp(e.getExam_end().getTime() + (7 * 24 * 60 * 60 * 1000)));
 					f = pst.executeUpdate();
 					pst.close();
+					System.out.println(f);
 					if (f == 0) {
 						con.rollback();
 						pst.close();
@@ -650,7 +654,7 @@ public class ExamsDao {
 			if (res.next()) {
 				int f2 = res.getInt(1);
 				f = f2 == 0 ? false : true;
-				con.close();
+				//con.close();
 			}
 		} catch (SQLException e) {
 			
@@ -664,6 +668,7 @@ public class ExamsDao {
 			}
 		}
 
+		System.out.println(f);
 		return f;
 	}
 

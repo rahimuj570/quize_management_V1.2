@@ -43,7 +43,7 @@ public class ApprovedUserServlet extends HttpServlet {
 		} else {
 			s.setAttribute("success_approved", "Successfully Approved " + request.getParameter("user_id"));
 		}
-		response.sendRedirect("admin/pending_users.jsp");
+		response.sendRedirect(request.getHeader("referer"));
 	}
 
 	/**
