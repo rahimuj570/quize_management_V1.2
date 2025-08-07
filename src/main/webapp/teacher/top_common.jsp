@@ -1,0 +1,123 @@
+<%@page import="entities.Users"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>OEMS - Online Management System</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Main CSS-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="main.css">
+<!-- Font-icon css-->
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<%
+Users me = (Users) session.getAttribute("current_user");
+String currentPage = request.getRequestURI();
+%>
+
+
+
+</head>
+<body class="app sidebar-mini rtl">
+	<!-- Navbar-->
+	<header style="background: #1abc9c" class="app-header">
+		<a style='background: #009688' class="app-header__logo"
+			href="dashboard.jsp">OEMS</a>
+		<!-- Sidebar toggle button-->
+		<a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+			aria-label="Hide Sidebar"></a>
+		<!-- Navbar Right Menu-->
+		<ul class="app-nav">
+
+			<li title="Profile info" class="dropdown"><a
+				class="app-nav__item" href="#" data-toggle="dropdown"
+				aria-label="Open Profile Menu"><i
+					class="fa fa-user-circle-o fa-lg"></i></a>
+			<li title="Change Password" class="dropdown"><a
+				class="app-nav__item" href="#" data-toggle="dropdown"
+				aria-label="Open Profile Menu"><i class="fa fa-key fa-lg"></i></a>
+			<li title="Logout" class="dropdown"><a class="app-nav__item"
+				href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i
+					class="fa fa-sign-out fa-lg"></i></a></li>
+
+		</ul>
+	</header>
+	<!-- Sidebar menu-->
+	<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+	<aside class="app-sidebar">
+		<div class="app-sidebar__user">
+			<img width="50" class="app-sidebar__user-avatar"
+				src="https://avatar.iran.liara.run/username?username=<%=me.getUser_first_name()+"+"+me.getUser_last_name() %>"
+				alt="User Image">
+			<div>
+				<p class="app-sidebar__user-name"><%=me.getUser_first_name()+" "+me.getUser_last_name() %></p>
+				<p class="app-sidebar__user-designation"><%
+				
+				if(me.getUser_is_teacher()==0){
+					out.print("Student");
+				}else if(me.getUser_is_teacher()==1 && me.getUser_is_admin()==1){
+					if(currentPage.contains("admin")){
+						out.print("Admin");
+					}else{
+						out.print("Teacher");
+					}
+				}else{
+					out.print("Teacher");
+				}
+				
+				%></p>
+			</div>
+		</div>
+
+
+
+
+		<ul class="app-menu">
+			<li><a
+				class='app-menu__item <%=currentPage.endsWith("dashboard.jsp") ? "active" : ""%>'
+				href="dashboard.jsp"><i class="app-menu__icon fa fa-dashboard"></i><span
+					class="app-menu__label">Dashboard</span></a></li>
+			<li><a
+				class='app-menu__item <%=currentPage.endsWith("create_question.jsp") ? "active" : ""%>'
+				href="create_question.jsp"><i
+					class="app-menu__icon fa fa-plus-square"></i><span
+					class="app-menu__label">Create Question</span></a></li>
+
+
+			<li><a
+				class='app-menu__item <%=currentPage.endsWith("show_question_set.jsp") ? "active" : ""%>'
+				href="show_question_set.jsp"><i
+					class="app-menu__icon fa fa-th-large"></i><span
+					class="app-menu__label">Question Sets</span></a></li>
+
+			<li><a
+				class='app-menu__item <%=currentPage.endsWith("show_questions.jsp") ? "active" : ""%>'
+				href="show_questions.jsp"><i class="app-menu__icon fa fa-eye"></i><span
+					class="app-menu__label">Show Questions</span></a></li>
+
+			<li><a class="app-menu__item" href="create_exam.jsp"><i
+					class="app-menu__icon fa fa-plus-circle"></i><span
+					class="app-menu__label">Create Exam</span></a></li>
+
+			<li><a class='app-menu__item <%=currentPage.endsWith("show_exams.jsp") ? "active" : ""%>' href="show_exams.jsp"><i
+					class="app-menu__icon fa fa-eye"></i><span class="app-menu__label">Show
+						Exams</span></a></li>
+
+
+			<!-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
+            <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
+          </ul>
+        </li>-->
+
+		</ul>
+	</aside>

@@ -1,0 +1,54 @@
+@charset "ISO-8859-1";
+
+.nav_ul {
+	display: flex;
+	list-style: none;
+	gap: 10px;
+	border-bottom: 2px solid cyan;
+	padding: 2px;
+	border-radius: 10px;
+}
+
+.nav_ul li {
+	border: 2px solid cyan;
+	padding: 2px 5px;
+	border-radius: 5px;
+	transition: .3s;
+}
+
+.nav_ul a {
+	text-decoration: none;
+	color: black;
+}
+
+.nav_ul li:hover {
+	background: antiquewhite;
+}
+
+.center_txt {
+	text-align: center
+}
+
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+.danger_txt {
+	color: red;
+}
+
+.success_txt {
+	color: lime;
+}
