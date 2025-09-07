@@ -1,30 +1,79 @@
+
 <%@page import="helper.GetBatchSectionOfStudentPOJO"%>
+<%@page import="java.util.Date"%>
 <%@page import="entities.Exams"%>
+<%@page import="dao.ExamsDao"%>
+<%@page import="helper.Quotes.QuoteCategory"%>
+<%@page import="helper.Quotes"%>
 <%@page import="entities.QuestionSets"%>
 <%@page import="entities.Users"%>
-<%@page import="dao.ExamsDao"%>
+<%@page import="helper.ConnectionProvider"%>
+<%@page import="dao.QuestionSetsDao"%>
 <%@page import="entities.Course"%>
 <%@page import="entities.BatchClass"%>
 <%@page import="entities.Sections"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="helper.ConnectionProvider"%>
 <%@page import="dao.BatchSectionDao"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>My Exams</title>
-<link rel="stylesheet" type="text/css" href="student.css">
-<style type="text/css">
-label {
-	padding: 0 10px 0 18px;
-}
-</style>
-</head>
+<%@include file="top_common.jsp"%>
 
-<%
+<main class="app-content">
+	<div class="app-title">
+		<div>
+			<h1>
+				<i class="fa fa-calendar-check-o"></i> Upcoming Exam
+			</h1>
+			<p><%=Quotes.getQ(QuoteCategory.ParticipatedExam)%></p>
+		</div>
+		<ul class="app-breadcrumb breadcrumb side">
+			<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+			<li class="breadcrumb-item">Dashboard</li>
+			<li class="breadcrumb-item active"><a href="#">Upcoming
+					Exams</a></li>
+		</ul>
+	</div>
+	<div class="container-fluid">
+
+
+
+
+
+
+		<%
+		if (session.getAttribute("exam_early_entry") != null) {
+		%>
+		<div class="alert alert-danger" role="alert">
+			<%=session.getAttribute("exam_early_entry")%>
+		</div>
+		<%
+		session.removeAttribute("exam_early_entry");
+		}
+		%>
+		<%
+		if (session.getAttribute("exam_violation") != null) {
+		%>
+		<div class="alert alert-danger" role="alert">
+			<%=session.getAttribute("exam_violation")%>
+		</div>
+		<%
+		session.removeAttribute("exam_violation");
+		}
+		%>
+		<%
+		if (session.getAttribute("exam_over_entry") != null) {
+		%>
+		<div class="alert alert-danger" role="alert">
+			<%=session.getAttribute("exam_over_entry")%>
+		</div>
+		<%
+		session.removeAttribute("exam_over_entry");
+		}
+		%>
+
+
+
+
+
+		<%
 BatchSectionDao bs = new BatchSectionDao(ConnectionProvider.main());
 ArrayList<Sections> sectiponList = bs.getAllSection();
 ArrayList<BatchClass> classList = bs.getAllClass();
@@ -40,92 +89,94 @@ ArrayList<Exams> examList = request.getParameter("course_id") == null
 BatchSectionDao bsDao = new BatchSectionDao(ConnectionProvider.main());
 %>
 
-<body>
-	<%@include file="./student_nav.jsp"%>
 
-	<%
-	if (session.getAttribute("exam_early_entry") != null) {
-	%>
-	<p class="center_txt danger_txt"><%=session.getAttribute("exam_early_entry")%></p>
-	<%
-	session.removeAttribute("exam_early_entry");
-	}
-	%>
-	<%
-	if (session.getAttribute("exam_violation") != null) {
-	%>
-	<p class="center_txt danger_txt"><%=session.getAttribute("exam_violation")%></p>
-	<%
-	session.removeAttribute("exam_violation");
-	}
-	%>
-	<%
-	if (session.getAttribute("exam_over_entry") != null) {
-	%>
-	<p class="center_txt danger_txt"><%=session.getAttribute("exam_over_entry")%></p>
-	<%
-	session.removeAttribute("exam_over_entry");
-	}
-	%>
-	<div style="overflow-x: auto;">
-		<table>
-			<tr>
-				<th>ID</th>
-				<th>Exam Name</th>
-				<th>Course</th>
-				<th>Batch</th>
-				<th>Section</th>
-				<th>Total Questions</th>
-				<th>Exam Mark</th>
-				<th>Exam Start</th>
-				<th>Exam Duration</th>
-				<th>Exam Type</th>
-				<th>Enter</th>
-			</tr>
-			<%
-			for (Exams e : examList) {
-			%>
-			<tr>
-				<td><%=e.getExam_id()%></td>
-				<td><%=e.getExam_name()%></td>
-				<td><%=bsDao.getCourseNameById(e.getExam_course())%></td>
-				<td><%=bsDao.getBatchNameById(e.getExam_batch())%></td>
-				<td><%=bsDao.getSectionNameById(e.getExam_section())%></td>
-				<td><%=e.getExam_question_amount()%></td>
-				<td><%=e.getExam_marks()%></td>
-				<td><%=e.getExam_start()%></td>
-				<td><%=e.getExam_duration()%> Minutes</td>
-				<td><%=e.getExam_privacy() == 0 ? "Public" : "Protected"%></td>
-				<%
-				if (e.getExam_privacy() == 0) {
-				%>
-				<td>
-					<button onclick="enterExam(<%=e.getExam_id()%>)"
-						style="background: lime">Enter</button>
-				</td>
-				<%
-				} else if (eDao.isAlredyPermited(cu.getUser_id(), e.getExam_id())) {
-				%>
-				<td>
-					<button onclick="enterExam(<%=e.getExam_id()%>)"
-						style="background: lime">Enter</button>
-				</td>
 
-				<%
-				} else {
-				%>
-				<td>Ineligible</td>
-				<%
-				}
-				%>
-			</tr>
-			<%
-			}
-			%>
-		</table>
+
+
+
+
+
 	</div>
-	<script src="./student.js"></script>
-	<script type="text/javascript">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="tile">
+				<div class="tile-body">
+					<table class="table table-hover table-bordered" id="sampleTable">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Exam Name</th>
+								<th>Course</th>
+								<th>Batch</th>
+								<th>Section</th>
+								<th>Total Questions</th>
+								<th>Exam Mark</th>
+								<th>Exam Start</th>
+								<th>Exam Duration</th>
+								<th>Exam Type</th>
+								<th>Enter</th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+
+							<%
+							for (Exams e : examList) {
+							%>
+							<tr>
+								<td><%=e.getExam_id()%></td>
+								<td><%=e.getExam_name()%></td>
+								<td><%=bsDao.getCourseNameById(e.getExam_course())%></td>
+								<td><%=bsDao.getBatchNameById(e.getExam_batch())%></td>
+								<td><%=bsDao.getSectionNameById(e.getExam_section())%></td>
+								<td><%=e.getExam_question_amount()%></td>
+								<td><%=e.getExam_marks()%></td>
+								<td><%=e.getExam_start()%></td>
+								<td><%=e.getExam_duration()%> Minutes</td>
+								<td><%=e.getExam_privacy() == 0 ? "Public" : "Protected"%></td>
+								<%
+								if (e.getExam_privacy() == 0) {
+								%>
+								<td>
+									<button class="btn btn-primary"
+										onclick="enterExam(<%=e.getExam_id()%>)"
+										style="color: white; padding: 3px 5px">Enter</button>
+								</td>
+								<%
+								} else if (eDao.isAlredyPermited(cu.getUser_id(), e.getExam_id())) {
+								%>
+								<td>
+									<button class="btn btn-primary"
+										onclick="enterExam(<%=e.getExam_id()%>)"
+										style="color: white; padding: 3px 5px">Enter</button>
+								</td>
+
+								<%
+								} else {
+								%>
+								<td>Ineligible</td>
+								<%
+								}
+								%>
+							</tr>
+							<%
+							}
+							%>
+
+
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+
+<script type="text/javascript">
 	let enterExam=(exam_id)=>{	
 	 if (confirm('You have only one chance to complete this exam. If somehow this tab close, then you will be expelled.Tab can be closed via some illegal action. Here are the criteria:\n\n1) If you change the exam tab,\n2) If you minimize the browser,\n3) If you try to change the size of the browser window,\n4) If you try to open "inspect tool" or "web tool",\n5) If you refresh/reload the exam tab.\n6) Must grant pop-up permission if system requires\n\nSo be careful about the rules. If you agree, click "ok" and participate the exam.')) {
 				var a = document.createElement('a');
@@ -135,5 +186,21 @@ BatchSectionDao bsDao = new BatchSectionDao(ConnectionProvider.main());
 			   } 
 	}
 	 </script>
+
+
+<!-- Essential javascripts for application to work-->
+<script src="jquery-3.2.1.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<script src="main.js"></script>
+
+<!-- Data table plugin-->
+<script type="text/javascript" src="plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">
+	$('#sampleTable').DataTable();
+</script>
 </body>
 </html>

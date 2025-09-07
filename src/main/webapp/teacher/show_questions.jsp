@@ -166,7 +166,7 @@
 			<form
 				style="background:white; margin-bottom: 10px; padding: 20px; border-radius: 3px; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);"
 				method="get"
-				action="<%=request.getContextPath()%>/teacher2/show_questions.jsp">
+				action="<%=request.getContextPath()%>/teacher/show_questions.jsp">
 				<input type="checkbox" id="own" name="own" value="1"> <label
 					for="own"> My Questions</label><br> <input type="checkbox"
 					id="other" name="other" value="1"> <label for="other">Others
@@ -373,7 +373,7 @@
 										if (q.getQ_teacher() == cu.getUser_id()) {
 										%>
 										<button class="btn btn-warning"
-											onclick="location=`<%=request.getContextPath()%>/teacher2/edit_question.jsp?q_id=<%=q.getQ_id()%>`;return false;"
+											onclick="location=`<%=request.getContextPath()%>/teacher/edit_question.jsp?q_id=<%=q.getQ_id()%>`;return false;"
 											style="color: green; padding: 3px 5px">Edit</button> <%
  } else {
  %>

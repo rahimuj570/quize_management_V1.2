@@ -179,7 +179,7 @@ ArrayList<QuestionSets> qsList = qs.getAllQuestionSet(cu.getUser_id());
 							<%
 							for (QuestionSets qset : qsList) {
 							%>
-							<option value="<%=qset.getQs_id()%>"><%=qset.getQs_name()%></option>
+						<option value="<%=qset.getQs_id()%>"><%=qset.getQs_name() %></option>
 							<%
 							}
 							%>

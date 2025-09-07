@@ -7,7 +7,8 @@ import java.util.Random;
 public class Quotes {
 
 	public static enum QuoteCategory {
-		SEE_QUESTION, CREATE_QUESTION, SEE_QUESTION_SET, CREATE_EXAM, PENDING_USERS, TEACHER, STUDENT, ADMIN;
+		SEE_QUESTION, CREATE_QUESTION, SEE_QUESTION_SET, CREATE_EXAM, PENDING_USERS, TEACHER, STUDENT, ADMIN,
+		ParticipatedExam;
 	}
 
 	public static ArrayList<String> getShowQuestion() {
@@ -120,6 +121,21 @@ public class Quotes {
 				"Balance empathy with standards, and you'll lead wisely."));
 	}
 
+	public static ArrayList<String> getParticipatedExam() {
+		return new ArrayList<>(
+				Arrays.asList("Success is the sum of small efforts, repeated day in and day out. – Robert Collier",
+						"Your late nights and struggles are the brushstrokes of your future masterpiece. – Unknown",
+						"What feels like endless studying now will feel like endless opportunity later. – Unknown",
+						"The harder you work for something, the greater you’ll feel when you achieve it. – Unknown",
+						"Sometimes you win, sometimes you learn. – John Maxwell",
+						"A stumble may prevent a fall; learn from this experience and come back stronger. – Unknown",
+						"You are more than a grade; you are a learner, a dreamer, a future achiever. – Unknown",
+						"Believe in yourself, even when the grades don’t. Your potential is limitless. – Unknown",
+						"Failure is not the opposite of success; it’s part of success. Keep striving. – Unknown",
+						"Every exam you complete is a step closer to your goals. Keep going. – Unknown"));
+
+	}
+
 	static Random random = new Random();
 
 	public static String getQ(QuoteCategory qc) {
@@ -141,6 +157,8 @@ public class Quotes {
 			q = getStudent().get(random.nextInt(10));
 		} else if (qc == QuoteCategory.ADMIN) {
 			q = getAdmin().get(random.nextInt(10));
+		} else if (qc == QuoteCategory.ParticipatedExam) {
+			q = getParticipatedExam().get(random.nextInt(10));
 		}
 
 		return q;

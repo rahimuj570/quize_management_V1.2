@@ -291,7 +291,7 @@ public class ExamsDao {
 	public ArrayList<Exams> getAllStudentExamById(int batchId, int sectionId, String courseId) {
 		con = ConnectionProvider.main();
 		ArrayList<Exams> examList = new ArrayList<Exams>();
-		String query = "select * from exams where exam_isOver=0 and exam_batch=" + batchId + " and (exam_section="
+		String query = "select * from exams where exam_isOver=0 and exam_isapproved=1 and exam_batch=" + batchId + " and (exam_section="
 				+ sectionId + " or exam_section=0)";
 		if (!courseId.equals("")) {
 			query = query + " and exam_course=" + courseId;
@@ -335,14 +335,14 @@ public class ExamsDao {
 		con = ConnectionProvider.main();
 		ArrayList<Questions> qList = new ArrayList<Questions>();
 		ArrayList<Integer> exam_set = getAllQuestionSetById(exam_id + "");
-		String query = "select q.q_id , q.q_statement, q.q_img, q.q_batch, q.q_subject, q.q_privacy, q.q_section, q.q_teacher, q.q_difficulty from questions q join question_set_to_question_relation qsr join exam_to_question_set_relation eqr where q.q_id=qsr.q_id and (";
+		String query = "select q.q_id , q.q_statement, q.q_img, q.q_batch, q.q_subject, q.q_privacy, q.q_section, q.q_teacher, q.q_difficulty from questions q , question_set_to_question_relation qsr , exam_to_question_set_relation eqr where q.q_id=qsr.q_id and (";
 		for (int i = 0; i < exam_set.size(); i++) {
 			query = query + " qsr.qs_id=" + exam_set.get(i);
 			if (i < exam_set.size() - 1) {
 				query = query + " or ";
 			}
 		}
-		query = query + ") and eqr.qs_id=qsr.qs_id and eqr.exam_id="+exam_id+" order by rand() limit " + limit;
+		query = query + ") and eqr.qs_id=qsr.qs_id and eqr.exam_id="+exam_id+" order by DBMS_RANDOM.VALUE FETCH FIRST "+limit+" ROWS ONLY ";
 		 System.out.println(query);
 		try {
 			PreparedStatement pst = con.prepareStatement(query);
@@ -378,8 +378,8 @@ public class ExamsDao {
 		con = ConnectionProvider.main();
 		ArrayList<Options> optList = new ArrayList<Options>();
 		String query = "select * from ((SELECT * FROM options where opt_question=" + exam_id
-				+ " and opt_isAnswer=0 order by rand() limit 3) union all (select * from options where opt_question="
-				+ exam_id + " and opt_isAnswer=1 order by rand() limit 1)) as t order by rand()";
+				+ " and opt_isAnswer=0 order by DBMS_RANDOM.VALUE FETCH FIRST 3 ROWS ONLY ) union all (select * from options where opt_question="
+				+ exam_id + " and opt_isAnswer=1 order by DBMS_RANDOM.VALUE fetch first 1 rows only)) t order by DBMS_RANDOM.VALUE";
 		// System.out.println(query);
 		try {
 			PreparedStatement pst = con.prepareStatement(query);
@@ -462,7 +462,7 @@ public class ExamsDao {
 	public ArrayList<Exams> getAllParticipatedExamById(Long student_id) {
 		con = ConnectionProvider.main();
 		ArrayList<Exams> examList = new ArrayList<Exams>();
-		String query = "select e.exam_id, e.exam_name, e.exam_teacher, e.exam_batch, e.exam_section, e.exam_course, e.exam_privacy, e.exam_duration, e.exam_question_amount, e.exam_mark, e.exam_start, e.exam_end, e.exam_isOver, e.exam_isApproved from exams e join exams_evaluation ev where e.exam_id=ev.exam_id and ev.student_id="
+		String query = "select e.exam_id, e.exam_name, e.exam_teacher, e.exam_batch, e.exam_section, e.exam_course, e.exam_privacy, e.exam_duration, e.exam_question_amount, e.exam_mark, e.exam_start, e.exam_end, e.exam_isOver, e.exam_isApproved from exams e , exams_evaluation ev where e.exam_id=ev.exam_id and ev.student_id="
 				+ student_id;
 		query = query + " order by exam_end desc";
 		// System.out.println(query);

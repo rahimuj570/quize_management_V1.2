@@ -103,30 +103,19 @@ let changePassword = (url_loc) => {
 				href="dashboard.jsp"><i class="app-menu__icon fa fa-dashboard"></i><span
 					class="app-menu__label">Dashboard</span></a></li>
 			<li><a
-				class='app-menu__item <%=currentPage.endsWith("create_question.jsp") ? "active" : ""%>'
-				href="create_question.jsp"><i
-					class="app-menu__icon fa fa-plus-square"></i><span
-					class="app-menu__label">Create Question</span></a></li>
+				class='app-menu__item <%=currentPage.endsWith("my_exams.jsp") ? "active" : ""%>'
+				href="my_exams.jsp"><i
+					class="app-menu__icon fa fa-calendar-check-o"></i><span
+					class="app-menu__label">Upcoming Exams</span></a></li>
 
 
 			<li><a
-				class='app-menu__item <%=currentPage.endsWith("show_question_set.jsp") ? "active" : ""%>'
-				href="show_question_set.jsp"><i
-					class="app-menu__icon fa fa-th-large"></i><span
-					class="app-menu__label">Question Sets</span></a></li>
+				class='app-menu__item <%=currentPage.endsWith("fa-check-square-o") ? "active" : ""%>'
+				href="participated_exams.jsp"><i
+					class="app-menu__icon fa fa-check-square-o"></i><span
+					class="app-menu__label">Participated Exams</span></a></li>
 
-			<li><a
-				class='app-menu__item <%=currentPage.endsWith("show_questions.jsp") ? "active" : ""%>'
-				href="show_questions.jsp"><i class="app-menu__icon fa fa-eye"></i><span
-					class="app-menu__label">Show Questions</span></a></li>
-
-			<li><a class="app-menu__item" href="create_exam.jsp"><i
-					class="app-menu__icon fa fa-plus-circle"></i><span
-					class="app-menu__label">Create Exam</span></a></li>
-
-			<li><a class='app-menu__item <%=currentPage.endsWith("show_exams.jsp") ? "active" : ""%>' href="show_exams.jsp"><i
-					class="app-menu__icon fa fa-eye"></i><span class="app-menu__label">Show
-						Exams</span></a></li>
+			
 			
 			<%
 				

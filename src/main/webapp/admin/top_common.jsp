@@ -74,7 +74,7 @@ let changePassword = (url_loc) => {
 	<aside class="app-sidebar">
 		<div class="app-sidebar__user">
 			<img width="50" class="app-sidebar__user-avatar"
-				src="https://avatar.iran.liara.run/username?username=<%=me.getUser_first_name() + "+" + me.getUser_last_name()%>"
+			src='https://ui-avatars.com/api/?background=random&name=<%=me.getUser_first_name()+"+"+me.getUser_last_name() %>&rounded=true&size=128'
 				alt="User Image">
 			<div>
 				<p class="app-sidebar__user-name"><%=me.getUser_first_name() + " " + me.getUser_last_name()%></p>

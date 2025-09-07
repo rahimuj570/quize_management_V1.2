@@ -153,7 +153,7 @@ BatchSectionDao bsDao = new BatchSectionDao(ConnectionProvider.main());
 				
 				<td><%=e.getExam_privacy() == 0 ? "Public" : "Protected"%></td>
 				<td><%=e.getExam_isApproved() == 1 ? "YES" : "NO"%></td>
-				<%if(e.getExam_isOver()==0){ %>
+				<%if(!e.getExam_end().before(new Date(new Date().getTime()))){ %>
 				<td>
 					<button style="background: cyan">
 						<a
