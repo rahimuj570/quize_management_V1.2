@@ -1,13 +1,11 @@
 
 
-```markdown
+
 # Quiz Management System V1.2
 
-![Java](https://img.shields.io/badge/Java-11%2B-orange?logo=java&logoColor=white)  
-![Servlets](https://img.shields.io/badge/Servlets-JSP-blue?logo=apachetomcat&logoColor=white)  
-![Oracle](https://img.shields.io/badge/Oracle-Database-blue)  
-![Tomcat](https://img.shields.io/badge/Tomcat-10.1-yellow?logo=apachetomcat&logoColor=black)  
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)  
+![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk&logoColor=white) ![Servlets](https://img.shields.io/badge/Servlets-JSP-blue?logo=openjdk&logoColor=white) ![Oracle](https://custom-icon-badges.demolab.com/badge/Oracle21c-F80000?logo=oracle&logoColor=fff)
+![Tomcat](https://img.shields.io/badge/Tomcat-10.1-yellow?logo=apachetomcat&logoColor=black)
+![Eclipse](https://img.shields.io/badge/Eclipse-FE7A16.svg?logo=Eclipse&logoColor=white) ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)  
 
 A web application online exam management system built with **Java (Servlets & JSP)**, featuring role-based access, question management, and automated evaluation. Designed for educational institutions and training platforms.
 
@@ -23,7 +21,7 @@ A web application online exam management system built with **Java (Servlets & JS
 - Responsive UI with JSP, CSS, Bootstrap and JavaScript.
 
 ---
-
+```markdown
 ## 📂 Project Structure
 ├── README.md
 ├── source files
@@ -157,7 +155,7 @@ A web application online exam management system built with **Java (Servlets & JS
 
 
 ---
-
+```
 ## ⚙️ Tech Stack
 - **Backend:** Java Servlets, JSP  
 - **Frontend:** JSP, CSS, JavaScript  
@@ -178,10 +176,10 @@ A web application online exam management system built with **Java (Servlets & JS
 
 ### Steps
 1. **Clone the repository**
-   ```bash
+```bash
    git clone https://github.com/rahimuj570/quize_management_V1.2.git
    cd quize_management_V1.2
-````
+```
 
 2. **Import Database**
 
