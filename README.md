@@ -5,7 +5,7 @@
 
 ![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk&logoColor=white) ![Servlets](https://img.shields.io/badge/Servlets-JSP-blue?logo=openjdk&logoColor=white) ![Oracle](https://custom-icon-badges.demolab.com/badge/Oracle21c-F80000?logo=oracle&logoColor=fff)
 ![Tomcat](https://img.shields.io/badge/Tomcat-10.1-yellow?logo=apachetomcat&logoColor=black)
-![Eclipse](https://img.shields.io/badge/Eclipse-FE7A16.svg?logo=Eclipse&logoColor=white) ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)  
+![Eclipse](https://img.shields.io/badge/Eclipse-FE7A16.svg?logo=Eclipse&logoColor=white)
 
 A web application online exam management system built with **Java (Servlets & JSP)**, featuring role-based access, question management, and automated evaluation. Designed for educational institutions and training platforms.
 
@@ -263,10 +263,4 @@ If you want to run the project from source:
 5. Open a Pull Request
 
 ---
-
-## 📜 License
-
-This project is licensed under the MIT License.
-
-
 
