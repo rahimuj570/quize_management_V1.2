@@ -24,6 +24,14 @@ A web application online exam management system built with **Java (Servlets & JS
 ```markdown
 ## 📂 Project Structure
 ├── README.md
+├── screenshots
+│   ├── login.png
+│   ├── question_cr1.png
+│   ├── question_cr2.png
+│   ├── reset_pass.png
+│   ├── show_res.png
+│   ├── student_d.png
+│   └── teacher_d.png
 ├── source files
 │   ├── QuizeManagement_v1.2.war
 │   └── quiz_management.sql
@@ -99,18 +107,21 @@ A web application online exam management system built with **Java (Servlets & JS
             ├── admin
             │   ├── bottom_common.jsp
             │   ├── dashboard.jsp
-            │   ├── jquery-3.2.1.min.js
-            │   ├── main.css
-            │   ├── main.js
             │   ├── pending_exams.jsp
             │   ├── pending_users.jsp
-            │   ├── plugins
             │   ├── select_students.jsp
             │   ├── show_admins.jsp
             │   ├── show_permitted_exams.jsp
             │   ├── show_students.jsp
             │   ├── show_teachers.jsp
             │   └── top_common.jsp
+            ├── assets
+            │   ├── jquery-3.2.1.min.js
+            │   ├── main.css
+            │   ├── main.js
+            │   └── plugins
+            │       ├── dataTables.bootstrap.min.js
+            │       └── jquery.dataTables.min.js
             ├── index.jsp
             ├── login.jsp
             ├── META-INF
@@ -123,12 +134,8 @@ A web application online exam management system built with **Java (Servlets & JS
             │   ├── dashboard.jsp
             │   ├── exam_evaluation.jsp
             │   ├── exam.jsp
-            │   ├── jquery-3.2.1.min.js
-            │   ├── main.css
-            │   ├── main.js
             │   ├── my_exams.jsp
             │   ├── participated_exams.jsp
-            │   ├── plugins
             │   └── top_common.jsp
             ├── teacher
             │   ├── bottom_common.jsp
@@ -137,10 +144,6 @@ A web application online exam management system built with **Java (Servlets & JS
             │   ├── dashboard.jsp
             │   ├── edit_exam.jsp
             │   ├── edit_question.jsp
-            │   ├── jquery-3.2.1.min.js
-            │   ├── main.css
-            │   ├── main.js
-            │   ├── plugins
             │   ├── select_question_set.jsp
             │   ├── show_exams.jsp
             │   ├── show_question_set.jsp
@@ -152,6 +155,7 @@ A web application online exam management system built with **Java (Servlets & JS
             └── WEB-INF
                 ├── lib
                 └── web.xml
+
 
 
 ---
