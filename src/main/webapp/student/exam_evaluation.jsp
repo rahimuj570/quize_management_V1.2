@@ -46,7 +46,7 @@
 	margin-bottom: 15px;
 }
 </style>
-<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" type="text/css" href="../assets/main.css">
 
 </head>
 <!-- <body class="bg-light" oncontextmenu="return false"
