@@ -21,6 +21,24 @@ A web application online exam management system built with **Java (Servlets & JS
 - Responsive UI with JSP, CSS, Bootstrap and JavaScript.
 
 ---
+
+```
+count of source line code in "/QuizeManagement_v1.2/src"
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+CSS                              1           1824            235          13176
+JSP                             34           1020            120           5341
+Java                            59            754            675           4734
+XML                              1              2              0            339
+JavaScript                       4              6             14            183
+-------------------------------------------------------------------------------
+SUM:                            99           3606           1044          23773
+-------------------------------------------------------------------------------
+
+```
+
+
 ```markdown
 ## 📂 Project Structure
 ├── README.md
